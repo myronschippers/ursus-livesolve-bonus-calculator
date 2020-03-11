@@ -55,9 +55,7 @@ function newEmployeeObjectCreator(employee) {
   // console.log('NEW OBJECT CREATOR:', employee.reviewRating);
   // console.log('NEW OBJECT CREATOR (length test):', employee.employeeNumber.length);
 
-  if (employee.employeeNumber.length === 4) {
-    bonusPercentage += 0.05;
-  }
+  bonusPercentage = adjustBonusPctForSeniority(bonusPercentage, employee.employeeNumber);
 
   // adjust down 1% if salary is greater than 65000
   if (parseInt(employee.annualSalary) > 65000) {
@@ -98,6 +96,16 @@ function calculateRatingBonus(employeeReviewRating) {
   }
 
   return bonusPercentage;
+}
+
+function adjustBonusPctForSeniority(currentBonusPct, employeeNumber) {
+  let adjustedBonusPct = currentBonusPct
+
+  if (employeeNumber.length === 4) {
+    adjustedBonusPct += 0.05;
+  }
+
+  return adjustedBonusPct;
 }
 
 employeeIterator();
