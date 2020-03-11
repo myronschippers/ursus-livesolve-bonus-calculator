@@ -49,7 +49,7 @@ function employeeIterator() {
 function newEmployeeObjectCreator(employee) {
   // console.log('NEW OBJECT CREATOR:', employee.name);
   // do calculations here 
-  let bonusPercentage = calculateRatingBonus(employee);
+  let bonusPercentage = calculateRatingBonus(employee.reviewRating);
 
   // if (employee.reviewRating <= 2) {
   //   bonusPercentage = 0;
@@ -93,16 +93,16 @@ function newEmployeeObjectCreator(employee) {
   };
 }
 
-function calculateRatingBonus(indvEmployee) {
+function calculateRatingBonus(employeeReviewRating) {
   let bonusPercentage = 0;
 
-  if (indvEmployee.reviewRating <= 2) {
+  if (employeeReviewRating <= 2) {
     bonusPercentage = 0;
-  } else if (indvEmployee.reviewRating === 3) {
+  } else if (employeeReviewRating === 3) {
     bonusPercentage = 0.04;
-  } else if (indvEmployee.reviewRating === 4) {
+  } else if (employeeReviewRating === 4) {
     bonusPercentage = 0.06;
-  } else if (indvEmployee.reviewRating === 5) {
+  } else if (employeeReviewRating === 5) {
     bonusPercentage = 0.1;
   }
 
