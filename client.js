@@ -50,6 +50,12 @@ function newEmployeeObjectCreator(employee) {
 
   if (employee.reviewRating <= 2) {
     bonusPercentage = 0;
+  } else if (employee.reviewRating === 3) {
+    bonusPercentage = 0.04;
+  } else if (employee.reviewRating === 4) {
+    bonusPercentage = 0.06;
+  } else if (employee.reviewRating === 5) {
+    bonusPercentage = 0.1;
   }
   console.log('NEW OBJECT CREATOR:', employee.reviewRating);
 
