@@ -31,6 +31,8 @@ const employees = [
   }
 ];
 
+const employeeBonuses = [];
+
 function employeeIterator() {
   // for loop
   for (let i = 0; i < employees.length; i++) {
@@ -40,6 +42,7 @@ function employeeIterator() {
     // calculate thing
 
     console.log('NEW OBJECT: ',newObj);
+    employeeBonuses.push(newObj);
   }
 }
 
@@ -77,19 +80,21 @@ function newEmployeeObjectCreator(employee) {
   }
 
   // calculate my total bonus
-  let totalBonus = employee.annualSalary * bonusPercentage;
+  let totalBonus = Math.round(employee.annualSalary * bonusPercentage);
 
   // calculate my total compensation
+  let totalCompensation = parseInt(employee.annualSalary) + totalBonus;
 
   return {
     name: employee.name,
     bonusPercentage: bonusPercentage,
-    totalCompensation: 0,
+    totalCompensation: totalCompensation,
     totalBonus: totalBonus,
   };
 }
 
 employeeIterator();
+console.log(employeeBonuses);
 
 // YOU SHOULD NOT NEED TO CHANGE ANYTHING ABOVE THIS POINT
 
