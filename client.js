@@ -57,7 +57,24 @@ function newEmployeeObjectCreator(employee) {
   } else if (employee.reviewRating === 5) {
     bonusPercentage = 0.1;
   }
+
   console.log('NEW OBJECT CREATOR:', employee.reviewRating);
+  console.log('NEW OBJECT CREATOR (length test):', employee.employeeNumber.length);
+
+  if (employee.employeeNumber.length === 4) {
+    bonusPercentage += 0.05;
+  }
+
+  // adjust down 1% if salary is greater than 65000
+  if (parseInt(employee.annualSalary) > 65000) {
+    bonusPercentage -= 0.01;
+  }
+
+  if (bonusPercentage > 0.13) {
+    bonusPercentage = 0.13;
+  } else if (bonusPercentage < 0) {
+    bonusPercentage = 0;
+  }
 
   return {
     name: employee.name,
