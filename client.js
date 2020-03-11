@@ -57,10 +57,7 @@ function newEmployeeObjectCreator(employee) {
 
   bonusPercentage = adjustBonusPctForSeniority(bonusPercentage, employee.employeeNumber);
 
-  // adjust down 1% if salary is greater than 65000
-  if (parseInt(employee.annualSalary) > 65000) {
-    bonusPercentage -= 0.01;
-  }
+  bonusPercentage = adjustBonusPctForSalaryCap(bonusPercentage, employee.annualSalary);
 
   if (bonusPercentage > 0.13) {
     bonusPercentage = 0.13;
@@ -99,10 +96,21 @@ function calculateRatingBonus(employeeReviewRating) {
 }
 
 function adjustBonusPctForSeniority(currentBonusPct, employeeNumber) {
-  let adjustedBonusPct = currentBonusPct
+  let adjustedBonusPct = currentBonusPct;
 
   if (employeeNumber.length === 4) {
     adjustedBonusPct += 0.05;
+  }
+
+  return adjustedBonusPct;
+}
+
+function adjustBonusPctForSalaryCap(currentBonusPct, annualSalary) {
+  let adjustedBonusPct = currentBonusPct;
+
+  // adjust down 1% if salary is greater than 65000
+  if (parseInt(employee.annualSalary) > 65000) {
+    adjustedBonusPct -= 0.01;
   }
 
   return adjustedBonusPct;
