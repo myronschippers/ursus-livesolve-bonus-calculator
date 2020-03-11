@@ -59,11 +59,7 @@ function newEmployeeObjectCreator(employee) {
 
   bonusPercentage = adjustBonusPctForSalaryCap(bonusPercentage, employee.annualSalary);
 
-  if (bonusPercentage > 0.13) {
-    bonusPercentage = 0.13;
-  } else if (bonusPercentage < 0) {
-    bonusPercentage = 0;
-  }
+  bonusPercentage = adjustBonusPctForBonusCap(bonusPercentage);
 
   // calculate my total bonus
   let totalBonus = Math.round(employee.annualSalary * bonusPercentage);
@@ -111,6 +107,18 @@ function adjustBonusPctForSalaryCap(currentBonusPct, annualSalary) {
   // adjust down 1% if salary is greater than 65000
   if (parseInt(employee.annualSalary) > 65000) {
     adjustedBonusPct -= 0.01;
+  }
+
+  return adjustedBonusPct;
+}
+
+function adjustBonusPctForBonusCap(currentBonusPct) {
+  let adjustedBonusPct = currentBonusPct;
+
+  if (currentBonusPct > 0.13) {
+    adjustedBonusPct = 0.13;
+  } else if (currentBonusPct < 0) {
+    adjustedBonusPct = 0;
   }
 
   return adjustedBonusPct;
